@@ -1,0 +1,111 @@
+#-- Create organizational units
+
+dn: ou=users,dc=test,dc=nl
+objectClass: organizationalUnit
+objectClass: top
+ou: users
+
+dn: ou=groups,dc=test,dc=nl
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+#-- Add users
+
+dn: uid=anna,ou=users,dc=test,dc=nl
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+sn: anna
+cn: anna
+uid: anna
+mail: anna@nergens.org
+userPassword: {CRYPT}saHW9GdxihkGQ
+
+dn: uid=jan,ou=users,dc=test,dc=nl
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+sn: jan
+cn: jan
+uid: jan
+displayName: Jan D
+mail: ldapmodify@localhost
+userPassword: {CRYPT}saHW9GdxihkGQ
+
+dn: uid=marie,ou=users,dc=test,dc=nl
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+sn: marie
+cn: marie
+uid: marie
+mail: marie@nergens.org
+userPassword: {CRYPT}saHW9GdxihkGQ
+
+dn: uid=piet,ou=users,dc=test,dc=nl
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+sn: piet
+cn: piet
+uid: piet
+mail: piet@nergens.org
+userPassword: {CRYPT}saHW9GdxihkGQ
+
+dn: uid=sint,ou=users,dc=test,dc=nl
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+sn: sint
+cn: sint
+uid: sint
+displayName: Sinterklaas
+mail: sint@nergens.org
+userPassword: {CRYPT}saHW9GdxihkGQ
+
+#-- Create groups
+
+dn: cn=visitor,ou=groups,dc=test,dc=nl
+objectClass: top
+objectClass: groupOfNames
+member: uid=jan,ou=users,dc=test,dc=nl
+
+dn: cn=ingroup,ou=groups,dc=test,dc=nl
+objectClass: top
+objectClass: groupOfNames
+member: uid=sint,ou=users,dc=test,dc=nl
+member: cn=member,ou=groups,dc=test,dc=nl
+
+
+dn: cn=member,ou=groups,dc=test,dc=nl
+objectClass: top
+objectClass: groupOfNames
+member: uid=anna,ou=users,dc=test,dc=nl
+
+dn: cn=teacher,ou=groups,dc=test,dc=nl
+objectClass: top
+objectClass: groupOfNames
+member: uid=jan,ou=users,dc=test,dc=nl
+
+dn: cn=student,ou=groups,dc=test,dc=nl
+objectClass: top
+objectClass: groupOfNames
+member: uid=sint,ou=users,dc=test,dc=nl
+member: cn=member,ou=groups,dc=test,dc=nl
+member: uid=jan,ou=users,dc=test,dc=nl
+
+#-- Add users to groups
+
+dn: cn=member,ou=groups,dc=test,dc=nl
+changetype: modify
+add: member
+member: uid=piet,ou=users,dc=test,dc=nl
+member: uid=marie,ou=users,dc=test,dc=nl
+member: cn=ingroup,ou=groups,dc=test,dc=nl
+

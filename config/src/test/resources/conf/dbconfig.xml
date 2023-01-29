@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conf>
+	<prioriteit>5</prioriteit>
+	<!--<DB>
+		<DriverClass>com.mysql.jdbc.Driver</DriverClass>
+		<URL>jdbc:mysql://patti:3306/camping2011</URL>
+		<User>camping2011</User>
+		<Password>geheim</Password>
+	</DB>
+	--><DB>
+		<DriverClass>org.hsqldb.jdbcDriver</DriverClass>
+		<URL>jdbc:hsqldb:mem:mymemdb;shutdown=false</URL>
+		<User>SA</User>
+		<Password></Password>
+	</DB>
+	<inmemory>true</inmemory>
+</conf>

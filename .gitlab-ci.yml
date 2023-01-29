@@ -1,0 +1,68 @@
+image: maven:3-jdk-14
+
+# SNAPSHOT versions will be installed, it's a library
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
+  MAVEN_CLI_OPTS: " --batch-mode -Ddont-test=integration "
+
+cache:
+  paths:
+    - target/
+
+stages:
+  - build
+  - test
+  - assemble
+
+build:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS clean compile
+  tags:
+    - java
+
+
+#owasp:
+#  stage: build
+#  script:
+#    - mvn $MAVEN_CLI_OPTS dependency-check:check
+#  tags:
+#    - java
+
+
+test:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
+  tags:
+    - java
+
+
+package:
+  stage: assemble
+  script:
+    - mvn $MAVEN_CLI_OPTS install
+    - mv **/target/*.jar .
+  artifacts:
+    paths:
+      - "*.jar"
+    expire_in: 3 days
+  only:
+    - branches
+  tags:
+    - java
+
+
+install:
+  stage: assemble
+  script:
+    - mvn $MAVEN_CLI_OPTS install
+    - mv **/target/*.jar .
+  artifacts:
+    paths:
+      - "*.jar"
+    expire_in: 3 months
+  only:
+    - tags
+  tags:
+    - java
