@@ -6,7 +6,7 @@
 
   <groupId>nl.tsbd.utils</groupId>
   <artifactId>javautils</artifactId>
-  <version>22.01-SNAPSHOT</version>
+  <version>22.01</version>
   <packaging>pom</packaging>
 
   <modules>
