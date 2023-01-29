@@ -5,7 +5,7 @@
   <parent>
     <groupId>nl.tsbd.utils</groupId>
     <artifactId>javautils</artifactId>
-    <version>22.01</version>
+    <version>23.01-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <packaging>jar</packaging>
