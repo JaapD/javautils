@@ -59,7 +59,7 @@ public class AuthenticationFilter implements Filter {
                 log.trace("Not logged in, but free to go: '{}'", path);
                 chain.doFilter(request, response);
             } else {
-                log.info("Not logged in and forbidden: '{}'", path);
+                log.info("Not logged in and forbidden: '{} from {}'", path, httpRequest.getRemoteHost());
                 HttpServletResponse r = (HttpServletResponse) response;
                 r.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authorization shall be provided");
 //                r.sendRedirect(httpRequest.getContextPath()+login);
